@@ -7,21 +7,16 @@ const todoControl = document.querySelector(".todo-control");
 const headerInput = document.querySelector(".header-input");
 const todoList = document.querySelector(".todo-list");
 const todoCompleted = document.querySelector(".todo-completed");
-const headerButton = document.querySelector("header-button")
-const todoItem = document.querySelector("todo-item")
+const headerButton = document.querySelector(".header-button")
+// const todoItem = document.querySelector(".todo-item")
 
-const toDoData = []; //массив, куда записываются все введенные значения input
+const toDoData = JSON.parse(localStorage.getItem('todo-item')) || []; //массив, куда записываются данные из localStorage,а если их там нет, то все введенные значения input
 
 
 
 const showText = function () {
-  todoItem.textContent = ''
+  // todoItem.textContent = ''
 }
-headerButton.addEventListener('click', function(){
-  localStorage.setItem('todo-item', header-input.value) //сохранение в localstorage
-})
-
-
 
 
 const render = function () {
@@ -78,7 +73,7 @@ todoControl.addEventListener("submit", function (event) {
 
   toDoData.push(newToDo);//добавляет в массив новые объекты
   headerInput.value = ' '; //очищает строку от записанных элементов после события
-
+  localStorage.setItem('todo-item', JSON.stringify(toDoData));
   render(); //запуск функции
 });
-showText()
+render();
